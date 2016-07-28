@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface VotingRepo {
 
-	void save(Voter voter) throws Exception;
+	void vote(Voter voter) throws Exception;
 
-	List<Voter> loadAll() throws Exception;
+	List<Voter> showAllVotes() throws Exception;
 }

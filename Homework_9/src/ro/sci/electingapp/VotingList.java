@@ -21,7 +21,7 @@ public class VotingList implements VotingRepo {
 	protected VotingListFormater listFormater = new VotingListFormater();
 
 	@Override
-	public void save(Voter voter) throws IOException {
+	public synchronized void vote(Voter voter) throws IOException {
 		File file = new File(VOTES);
 		try (FileWriter writer = new FileWriter(file, true)) {
 			writer.append(listFormater.toTXT(voter) + "\n");
@@ -29,7 +29,7 @@ public class VotingList implements VotingRepo {
 	}
 
 	@Override
-	public List<Voter> loadAll() throws FileNotFoundException, IOException {
+	public synchronized List<Voter> showAllVotes() throws FileNotFoundException, IOException {
 		File file = new File(VOTES);
 		ArrayList<Voter> votes = new ArrayList<>();
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -41,6 +41,11 @@ public class VotingList implements VotingRepo {
 			}
 		}
 		return votes;
+	}
+
+	@Override
+	public String toString() {
+		return "VotingList [listFormater=" + listFormater + "]";
 	}
 
 }

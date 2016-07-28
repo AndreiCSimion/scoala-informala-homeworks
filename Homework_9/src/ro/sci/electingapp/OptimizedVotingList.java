@@ -3,8 +3,11 @@ package ro.sci.electingapp;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
 /**
- * This class extends from the {@VotingList} class and optimizez the writing process to the .txt file.
+ * This class extends from the {@VotingList} class and optimizez the writing
+ * process to the .txt file.
+ * 
  * @author Andrei Simion
  *
  */
@@ -23,7 +26,7 @@ public class OptimizedVotingList extends VotingList implements AutoCloseable {
 	}
 
 	@Override
-	public void save(Voter voter) throws IOException {
+	public void vote(Voter voter) throws IOException {
 		writer.append(listFormater.toTXT(voter) + "\n");
 	}
 
